@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Customerlist from "./components/customerlist";
 import cute from "./cute.png";
+import Traininglist from "./components/traininglist";
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
           <h2>Customer Info</h2>
         </header>
         <Customerlist />
+        <Traininglist />
       </div>
     );
   }
