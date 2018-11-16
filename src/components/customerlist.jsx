@@ -25,7 +25,7 @@ class Customerlist extends Component {
       .then(response => response.json())
       .then(responseData => {
         window.responseData = responseData;
-        this.setState({ customers: responseData.content});
+        this.setState({ customers: responseData.content });
       });
   };
 
@@ -55,11 +55,6 @@ class Customerlist extends Component {
 
   render() {
     const columns = [
-      {
-        Header: "Id",
-        accessor: "id",
-        Cell: this.renderEditable
-      },
       {
         Header: "First name",
         accessor: "firstname",

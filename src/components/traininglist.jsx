@@ -5,9 +5,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SaveIcon from "@material-ui/icons/Save";
 import "react-table/react-table.css";
-import * as moment from "moment";
-
-let date = moment().format("11-11-2018");
+import moment from "react-moment";
 
 class Traininglist extends Component {
   constructor(params) {
@@ -58,11 +56,6 @@ class Traininglist extends Component {
       {
         Header: "Date",
         accessor: "date",
-        /* d => {
-          return moment(d.date)
-            .local()
-            .format("DD-MM-YYYY hh:mm:ss a");}, */
-
         Cell: this.renderEditable
       },
       {
@@ -73,11 +66,6 @@ class Traininglist extends Component {
       {
         Header: "Activity",
         accessor: "activity",
-        Cell: this.renderEditable
-      },
-      {
-        Header: "Customer",
-        accessor: "customer",
         Cell: this.renderEditable
       }
     ];
