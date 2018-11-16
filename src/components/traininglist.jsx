@@ -5,7 +5,8 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SaveIcon from "@material-ui/icons/Save";
 import "react-table/react-table.css";
-import moment from "react-moment";
+import moment from "moment";
+import Confirm from "./confirm";
 
 class Traininglist extends Component {
   constructor(params) {
@@ -25,6 +26,14 @@ class Traininglist extends Component {
         window.responseData = responseData;
         this.setState({ trainings: responseData.content });
       });
+  };
+
+  // Delete a training
+  deleteTraining = link => {
+    fetch(link, { method: "DELETE" }).then(response => {
+      this.listTrainings();
+      this.setState({ showSnack: true });
+    });
   };
 
   renderEditable = cellInfo => {
@@ -55,8 +64,16 @@ class Traininglist extends Component {
     const columns = [
       {
         Header: "Date",
-        accessor: "date",
-        Cell: this.renderEditable
+        id: "date",
+        accessor: d => (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: moment(d.date)
+                .local()
+                .format("YYYY-MM-DD HH:mm")
+            }}
+          />
+        )
       },
       {
         Header: "Duration",
@@ -67,6 +84,23 @@ class Traininglist extends Component {
         Header: "Activity",
         accessor: "activity",
         Cell: this.renderEditable
+      },
+      {
+        Header: "Delete training",
+        id: "delete",
+        accessor: d => d.links.find(link => link.rel === "self").href,
+        filterable: false,
+        sortable: false,
+        Cell: ({ value }) => (
+          <IconButton
+            onClick={() =>
+              this.setState({ showDeleteConfirm: true, deleteData: value })
+            }
+            aria-label="Delete"
+          >
+            <DeleteIcon fontSize="small" />
+          </IconButton>
+        )
       }
     ];
 
@@ -78,6 +112,17 @@ class Traininglist extends Component {
           data={this.state.trainings}
           columns={columns}
         />
+        {this.state.showDeleteConfirm && (
+          <Confirm
+            title="Are you sure you want to delete this training?"
+            onConfirmed={value => {
+              if (value) {
+                this.deleteTraining(this.state.deleteData);
+              }
+              this.setState({ showDeleteConfirm: false });
+            }}
+          />
+        )}
       </div>
     );
   }
