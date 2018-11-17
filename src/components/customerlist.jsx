@@ -41,10 +41,14 @@ class Customerlist extends Component {
   };
 
   addTraining = training => {
-    fetch("https://customerrest.herokuapp.com/api/trainings", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(training)
+    return new Promise(function(resolve, reject) {
+      fetch("https://customerrest.herokuapp.com/api/trainings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(training)
+      }).then(r => {
+        resolve(r);
+      });
     });
   };
 

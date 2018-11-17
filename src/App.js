@@ -3,6 +3,7 @@ import "./App.css";
 import Customerlist from "./components/customerlist";
 import cute from "./cute.png";
 import Traininglist from "./components/traininglist";
+import Calendar from "./components/calendar";
 
 class App extends Component {
   constructor(params) {
@@ -13,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.page === "customers" ? (
+        {this.state.page === "customers" && (
           <>
             <header className="App-header">
               <img src={cute} className="App-logo" alt="logo" />
@@ -21,7 +22,9 @@ class App extends Component {
             </header>
             <Customerlist />
           </>
-        ) : (
+        )}
+
+        {this.state.page === "trainings" && (
           <>
             <header className="App-header">
               <h2>Trainings</h2>
@@ -29,12 +32,25 @@ class App extends Component {
             <Traininglist />
           </>
         )}
+
+        {this.state.page === "calendar" && (
+          <>
+            <header className="App-header">
+              <h2>Calendar</h2>
+            </header>
+            <Calendar />
+          </>
+        )}
+
         <footer>
           <button onClick={() => this.setState({ page: "trainings" })}>
             Trainings page
           </button>
           <button onClick={() => this.setState({ page: "customers" })}>
             Customers page
+          </button>
+          <button onClick={() => this.setState({ page: "calendar" })}>
+            Customer Calendar
           </button>
         </footer>
       </div>

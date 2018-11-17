@@ -24,20 +24,32 @@ class addTraining extends Component {
   // Save input data to states, save them to a variable 'training' and send that variable to the addtraining function in customerlist.js
   // or get the function addtraining from customerlist.js as a prop
   addTraining = () => {
+    if (this.state.date == "") return false;
+    if (this.state.duration == "") return false;
+    if (this.state.activity == "") return false;
+
     const training = {
       date: this.state.date,
       duration: this.state.duration,
       activity: this.state.activity,
       customer: this.props.link
     };
-    this.props.addTraining(training);
-    // This clears the previously inputted values from the textfields
-    this.setState({
-      date: "",
-      duration: "",
-      activity: ""
+    this.props.addTraining(training).then(r => {
+      //first one is when everything WORKS (resolve)
+      // console.log(r);
+
+      if (r.ok) {
+        this.setState({
+          date: "",
+          duration: "",
+          activity: ""
+        });
+        this.addModal.current.hide();
+      } else {
+        alert("Something went wrong! Try it again");
+      }
     });
-    this.addModal.current.hide();
+    // This clears the previously inputted values from the textfields
   };
 
   render() {
@@ -65,21 +77,21 @@ class addTraining extends Component {
           title="Add a new training"
         >
           <TextField
-            placeholder="Date"
+            placeholder="Date (YYYY-MM-DD)"
             name="date"
             onChange={this.handleChange}
             value={this.state.date}
           />
           <br />
           <TextField
-            placeholder="Duration"
+            placeholder="Duration (NN)"
             name="duration"
             onChange={this.handleChange}
             value={this.state.duration}
           />
           <br />
           <TextField
-            placeholder="Activity"
+            placeholder="Activity (string)"
             name="activity"
             onChange={this.handleChange}
             value={this.state.activity}

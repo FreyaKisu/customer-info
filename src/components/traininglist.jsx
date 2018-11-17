@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import ReactTable from "react-table";
-import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
-import SaveIcon from "@material-ui/icons/Save";
 import "react-table/react-table.css";
 import moment from "moment";
 import Confirm from "./confirm";
@@ -18,7 +16,7 @@ class Traininglist extends Component {
     this.listTrainings();
   }
 
-  // Get all customers
+  // Get all trainings
   listTrainings = () => {
     fetch("https://customerrest.herokuapp.com/api/trainings")
       .then(response => response.json())
