@@ -25,6 +25,9 @@ class Customerlist extends Component {
       .then(response => response.json())
       .then(responseData => {
         window.responseData = responseData;
+
+        //     console.log(responseData);
+
         this.setState({ customers: responseData.content });
       });
   };
@@ -124,7 +127,11 @@ class Customerlist extends Component {
       {
         Header: "Add a new training",
         id: "add",
-        accessor: d => d.links.find(link => link.rel === "self").href,
+        accessor: d => {
+          if (d) {
+            return d.links.find(link => link.rel === "self").href;
+          }
+        },
         filterable: false,
         sortable: false,
         Cell: ({ value }) => (
@@ -134,7 +141,11 @@ class Customerlist extends Component {
       {
         Header: "Delete customer",
         id: "delete",
-        accessor: d => d.links.find(link => link.rel === "self").href,
+        accessor: d => {
+          if (d) {
+            return d.links.find(link => link.rel === "self").href;
+          }
+        },
         filterable: false,
         sortable: false,
         Cell: ({ value }) => (

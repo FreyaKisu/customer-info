@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+* {
+  box-sizing: border-box;
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 50px;
@@ -60,4 +62,13 @@ button {
 button:hover {
   background-color: #282c34;
   color: whitesmoke;
+}
+
+#calendarInputs input,
+#calendarInputs select {
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+  vertical-align: top;
+  height: 25px;
 }

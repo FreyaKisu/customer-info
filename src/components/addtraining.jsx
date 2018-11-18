@@ -8,6 +8,7 @@ import SaveIcon from "@material-ui/icons/Save";
 class addTraining extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       date: "",
       duration: "",
@@ -24,9 +25,9 @@ class addTraining extends Component {
   // Save input data to states, save them to a variable 'training' and send that variable to the addtraining function in customerlist.js
   // or get the function addtraining from customerlist.js as a prop
   addTraining = () => {
-    if (this.state.date == "") return false;
-    if (this.state.duration == "") return false;
-    if (this.state.activity == "") return false;
+    if (this.state.date === "") return false;
+    if (this.state.duration === "") return false;
+    if (this.state.activity === "") return false;
 
     const training = {
       date: this.state.date,

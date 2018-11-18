@@ -86,7 +86,11 @@ class Traininglist extends Component {
       {
         Header: "Delete training",
         id: "delete",
-        accessor: d => d.links.find(link => link.rel === "self").href,
+        accessor: d => {
+          if (d) {
+            return d.links.find(link => link.rel === "self").href;
+          }
+        },
         filterable: false,
         sortable: false,
         Cell: ({ value }) => (
