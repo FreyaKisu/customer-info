@@ -18,6 +18,7 @@ class confirm extends Component {
       <div>
         <SkyLightStateless
           isVisible={true}
+          hideOnOverlayClicked
           dialogStyles={addDialog}
           title={this.props.title}
         >

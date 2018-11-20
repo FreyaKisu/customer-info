@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./App.scss";
 import Customerlist from "./components/customerlist";
 import cute from "./cute.png";
+import dumbbell from "./dumbbell.png";
 import Traininglist from "./components/traininglist";
 import Calendar from "./components/calendar";
 import firebase from "firebase/app";
@@ -43,6 +44,7 @@ class App extends Component {
     });
   };
 
+  //login admin: freya@a.com pwd: freya123; login user: matti@hotmale.com pwd: hotmale
   login = () => {
     if (this.state.loginPassword !== "" || this.state.loginEmail !== "") {
       firebase
@@ -108,7 +110,7 @@ class App extends Component {
           <div id="logged">
             {this.state.page === "customers" && (
               <>
-                <header className="App-header">
+                <header className="App-header ">
                   <img src={cute} className="App-logo" alt="logo" />
                   <h2>Customers</h2>
                   <button className="logout" onClick={this.logout}>
@@ -122,6 +124,7 @@ class App extends Component {
             {this.state.page === "trainings" && (
               <>
                 <header className="App-header">
+                  <img src={dumbbell} className="App-logo" alt="logo" />
                   <h2>Trainings</h2>
                   <button className="logout" onClick={this.logout}>
                     Logout
