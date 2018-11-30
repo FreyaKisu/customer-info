@@ -6,6 +6,7 @@ import dumbbell from "./dumbbell.png";
 import Traininglist from "./components/traininglist";
 import Calendar from "./components/calendar";
 import firebase from "firebase/app";
+import { format } from "url";
 require("firebase/auth");
 
 // Initialize Firebase
@@ -103,7 +104,9 @@ class App extends Component {
               placeholder="password"
               onChange={this.setPassword}
             />
-            <button onClick={this.login}>Login</button>
+            <button className="btn btn-outline-success" onClick={this.login}>
+              Login
+            </button>
           </div>
         )}
         {this.state.user !== "" && (
@@ -112,8 +115,11 @@ class App extends Component {
               <>
                 <header className="App-header ">
                   <img src={cute} className="App-logo" alt="logo" />
-                  <h2>Customers</h2>
-                  <button className="logout" onClick={this.logout}>
+                  <h2 className="text-success">Customers</h2>
+                  <button
+                    className="btn btn-outline-success"
+                    onClick={this.logout}
+                  >
                     Logout
                   </button>
                 </header>
@@ -125,8 +131,11 @@ class App extends Component {
               <>
                 <header className="App-header">
                   <img src={dumbbell} className="App-logo" alt="logo" />
-                  <h2>Trainings</h2>
-                  <button className="logout" onClick={this.logout}>
+                  <h2 className="text-info">Trainings</h2>
+                  <button
+                    className="btn btn-outline-info"
+                    onClick={this.logout}
+                  >
                     Logout
                   </button>
                 </header>
@@ -137,8 +146,11 @@ class App extends Component {
             {this.state.page === "calendar" && (
               <>
                 <header className="App-header">
-                  <h2>Calendar</h2>
-                  <button className="logout" onClick={this.logout}>
+                  <h2 className="text-warning">Calendar</h2>
+                  <button
+                    className="btn btn-outline-warning"
+                    onClick={this.logout}
+                  >
                     Logout
                   </button>
                 </header>
@@ -147,14 +159,23 @@ class App extends Component {
             )}
             {this.state.adminMode === true && (
               <footer>
-                <button onClick={() => this.setState({ page: "trainings" })}>
+                <button
+                  className="btn btn-outline-info"
+                  onClick={() => this.setState({ page: "trainings" })}
+                >
                   Trainings page
                 </button>
-                <button onClick={() => this.setState({ page: "customers" })}>
+                <button
+                  className="btn btn-outline-success"
+                  onClick={() => this.setState({ page: "customers" })}
+                >
                   Customers page
                 </button>
-                <button onClick={() => this.setState({ page: "calendar" })}>
-                  Customer Calendar
+                <button
+                  className="btn btn-outline-warning"
+                  onClick={() => this.setState({ page: "calendar" })}
+                >
+                  Customer calendar
                 </button>
               </footer>
             )}
